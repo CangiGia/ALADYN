@@ -1,0 +1,2 @@
+# Golden reference data for regression tests.
+# Files in this directory are regenerated only via tests/_regen_refs.py.

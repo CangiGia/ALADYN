@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aladyn"
+version = "0.0.1"
+description = "Automated Library for Advanced DYNamics — 3D rigid multibody simulation"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Giacomo Cangi" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+gui = ["PyQt6>=6.5", "pyqtgraph>=0.13", "vtk>=9.2"]
+docs = ["sphinx>=7", "sphinx-rtd-theme", "myst-parser"]
+dev = ["pytest>=7.4", "pytest-cov", "ruff", "mypy"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "unit: fast isolated tests of single components",
+    "integration: tests covering multiple subsystems",
+    "regression: golden-data regression tests",
+    "slow: tests that take >1s",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

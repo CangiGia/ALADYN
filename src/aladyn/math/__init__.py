@@ -10,5 +10,23 @@ vectors      : skew/tilde matrices, cross-product helpers.
 rotations    : rotation matrices, Euler/Cardan angle conversions.
 quaternions  : Euler-parameter algebra, ``A(p)``, ``G(p)``, ``E(p)``,
                relations between ``ṗ`` and ``ω``.
-transforms   : SE(3) homogeneous transforms and twist algebra.
+transforms   : SE(3) homogeneous transforms.
 """
+
+from . import quaternions, rotations, transforms, vectors
+from .quaternions import A, E, G
+from .transforms import Transform
+from .vectors import skew, unskew
+
+__all__ = [
+    "A",
+    "E",
+    "G",
+    "Transform",
+    "quaternions",
+    "rotations",
+    "skew",
+    "transforms",
+    "unskew",
+    "vectors",
+]

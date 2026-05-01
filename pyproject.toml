@@ -37,3 +37,44 @@ markers = [
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+extend-exclude = ["docs/build", "_references"]
+
+[tool.ruff.lint]
+# E/W   = pycodestyle (PEP 8)
+# F     = pyflakes
+# I     = isort
+# N     = PEP 8 naming
+# UP    = pyupgrade
+# B     = flake8-bugbear
+# SIM   = flake8-simplify
+# D     = pydocstyle (NumPy style configured below)
+# NPY   = NumPy-specific rules
+# RUF   = ruff-specific
+select = ["E", "W", "F", "I", "N", "UP", "B", "SIM", "D", "NPY", "RUF"]
+ignore = [
+    "D203",  # one-blank-line-before-class (conflicts with D211)
+    "D213",  # multi-line-summary-second-line (conflicts with D212)
+    "E741",  # allow ambiguous names like `I`, `l` for math identifiers
+    # Math notation: textbook symbols (Shabana) are intentional
+    "N802",  # function name not lowercase  (A(p), E(p), G(p))
+    "N803",  # argument name not lowercase  (R, A, J, M, ...)
+    "N806",  # variable name not lowercase  (A_m, R, A, ...)
+    # Unicode in docstrings is intentional (math: ω, α, ×, ², ...)
+    "RUF001",
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D"]              # tests do not need full docstrings
+"src/aladyn/**/__init__.py" = ["D104"]  # package docstrings already present; skip extras
+"src/aladyn/**/_*.py" = ["D"]        # private modules
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true

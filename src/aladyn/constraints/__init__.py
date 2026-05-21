@@ -12,7 +12,20 @@ etc.
 """
 
 from .base import Constraint, JacobianBlock
+from .cylindrical import CylindricalJoint
+from .planar import PlanarJoint
+from .prismatic import PrismaticJoint
 from .revolute import RevoluteJoint
 from .spherical import SphericalJoint
+from .universal import UniversalJoint
 
-__all__ = ["Constraint", "JacobianBlock", "RevoluteJoint", "SphericalJoint"]
+__all__ = [
+    "Constraint",
+    "CylindricalJoint",
+    "JacobianBlock",
+    "PlanarJoint",
+    "PrismaticJoint",
+    "RevoluteJoint",
+    "SphericalJoint",
+    "UniversalJoint",
+]

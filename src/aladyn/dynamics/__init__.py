@@ -12,5 +12,25 @@ stabilization  : Baumgarte stabilization and coordinate projection.
 """
 
 from .coordinates import SystemCoordinates
+from .eom import (
+    AugmentedSystem,
+    assemble_augmented,
+    constraint_jacobian,
+    constraint_residual,
+    constraint_rhs,
+    mass_matrix,
+    quadratic_velocity_forces,
+    solve_accelerations,
+)
 
-__all__ = ["SystemCoordinates"]
+__all__ = [
+    "AugmentedSystem",
+    "SystemCoordinates",
+    "assemble_augmented",
+    "constraint_jacobian",
+    "constraint_residual",
+    "constraint_rhs",
+    "mass_matrix",
+    "quadratic_velocity_forces",
+    "solve_accelerations",
+]

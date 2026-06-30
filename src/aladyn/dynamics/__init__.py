@@ -10,3 +10,7 @@ coordinates    : Euler-parameter handling, ``q``/``q̇`` packing/unpacking,
                  angular velocity ↔ ``ṗ`` conversions for the whole system.
 stabilization  : Baumgarte stabilization and coordinate projection.
 """
+
+from .coordinates import SystemCoordinates
+
+__all__ = ["SystemCoordinates"]

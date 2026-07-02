@@ -137,6 +137,27 @@ class RigidBody(Base):
         self.position = v[:3]
         self.quaternion = v[3:]
 
+    def set_q(self, value: ArrayLike, *, normalize: bool = True) -> None:
+        r"""Set the 7-vector ``[R, p]`` with optional quaternion normalization.
+
+        Parameters
+        ----------
+        value
+            Generalized coordinates ``[R, p]``, shape ``(7,)``.
+        normalize
+            When ``True`` (default) the quaternion part is renormalized to unit
+            norm. Pass ``False`` to store the raw Euler parameters verbatim, as
+            required by an index-3 integrator that treats
+            :math:`\mathbf p^\mathsf{T}\mathbf p - 1 = 0` as an explicit
+            constraint with its own Lagrange multiplier.
+        """
+        v = ensure_shape(value, (7,), "q")
+        self.position = v[:3]
+        if normalize:
+            self.quaternion = v[3:]
+        else:
+            self._p = ensure_finite(ensure_shape(v[3:], (4,), "quaternion"), "quaternion").copy()
+
     # ── Velocities ────────────────────────────────────────────────────
 
     @property

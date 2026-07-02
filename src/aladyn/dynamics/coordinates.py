@@ -142,15 +142,23 @@ class SystemCoordinates:
 
     # ── Scatter (global vector → bodies) ──────────────────────────────
 
-    def scatter_q(self, q: ArrayLike) -> None:
+    def scatter_q(self, q: ArrayLike, *, normalize: bool = True) -> None:
         r"""Distribute a global position vector :math:`\mathbf q` onto the bodies.
 
-        Each body's quaternion is renormalized on assignment (the setter on
-        :class:`~aladyn.model.body.RigidBody` enforces unit norm).
+        Parameters
+        ----------
+        q
+            Global position vector, shape ``(7n,)``.
+        normalize
+            When ``True`` (default) each body's quaternion is renormalized to
+            unit norm on assignment. Pass ``False`` to store the raw Euler
+            parameters verbatim, as required by an index-3 integrator that
+            enforces :math:`\mathbf p^\mathsf{T}\mathbf p - 1 = 0` explicitly
+            through its own Lagrange multiplier.
         """
         q_arr = ensure_shape(q, (self.n_coords,), "q")
         for body in self._bodies:
-            body.q = q_arr[self.slice(body)]
+            body.set_q(q_arr[self.slice(body)], normalize=normalize)
 
     def scatter_qdot(self, qdot: ArrayLike) -> None:
         r"""Distribute a global velocity vector :math:`\dot{\mathbf q}` onto the bodies.

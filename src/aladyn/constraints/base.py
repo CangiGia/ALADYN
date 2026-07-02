@@ -70,3 +70,11 @@ class Constraint(Base, ABC):
     @abstractmethod
     def gamma(self) -> NDArray[np.float64]:
         r"""Return the acceleration-level RHS :math:`\\gamma`, shape ``(n_eq,)``."""
+
+    def set_time(self, t: float) -> None:
+        """Inject the current simulation time into the constraint.
+
+        The default implementation is a no-op.  Rheonomic constraints
+        (drivers) override this to update their internal time state before
+        :meth:`phi`, :meth:`phi_q`, and :meth:`gamma` are called.
+        """

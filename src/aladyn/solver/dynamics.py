@@ -210,6 +210,9 @@ def integrate_dynamics(
         # the normalization constraint pᵀp-1=0 is enforced explicitly.
         layout.scatter_q(q, normalize=False)
         layout.scatter_qdot(qdot)
+        # Propagate time to rheonomic drivers (no-op for scleronomic joints).
+        for c in constraints:
+            c.set_time(t)
         M = mass_matrix(layout)
         Phi_q = constraint_jacobian(constraints, layout)
         Qv = quadratic_velocity_forces(layout)

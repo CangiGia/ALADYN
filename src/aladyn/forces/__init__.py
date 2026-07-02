@@ -16,12 +16,13 @@ from numpy.typing import NDArray
 from .applied import PointForce
 from .base import Force
 from .gravity import Gravity
+from .springs import TSDA
 from .user import UserForce
 
 if TYPE_CHECKING:
     from ..dynamics.coordinates import SystemCoordinates
 
-__all__ = ["Force", "Gravity", "PointForce", "UserForce", "to_force_fn"]
+__all__ = ["TSDA", "Force", "Gravity", "PointForce", "UserForce", "to_force_fn"]
 
 
 def to_force_fn(

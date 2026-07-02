@@ -13,19 +13,33 @@ etc.
 
 from .base import Constraint, JacobianBlock
 from .cylindrical import CylindricalJoint
+from .drivers import PrismaticDriver, RevoluteDriver
+from .functions import Constant, Function, Linear, Polynomial, Sinusoidal, UserDefined
 from .planar import PlanarJoint
+from .primitive import CoincidenceConstraint, Dot1Constraint, Dot2Constraint
 from .prismatic import PrismaticJoint
 from .revolute import RevoluteJoint
 from .spherical import SphericalJoint
 from .universal import UniversalJoint
 
 __all__ = [
+    "CoincidenceConstraint",
+    "Constant",
     "Constraint",
     "CylindricalJoint",
+    "Dot1Constraint",
+    "Dot2Constraint",
+    "Function",
     "JacobianBlock",
+    "Linear",
     "PlanarJoint",
+    "Polynomial",
+    "PrismaticDriver",
     "PrismaticJoint",
+    "RevoluteDriver",
     "RevoluteJoint",
+    "Sinusoidal",
     "SphericalJoint",
     "UniversalJoint",
+    "UserDefined",
 ]
